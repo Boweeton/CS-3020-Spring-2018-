@@ -1,0 +1,27 @@
+C# HW 1 Preproduction: 
+
+Initialize New Game:
+// 
+
+Game Loop:
+// User makes a shot
+
+// The Game object runs through each boat to see if they own that cell
+	// If the guessed cell is owned by a boat, adjust the corresponding cell accordingly
+		// If the boat is fully destroyed, flip the boolean and inform the user
+	// If the guessed cell isn't owned by a boat, adjust the corresponding cell accordingly
+
+// Update the visuals
+	// (do the code)
+
+// Request new shot
+	// Ask for the letter/number combo
+		// Strip off bookending spaces
+			// Split into array by space and remove empty elements (one call)
+				// If there is exactly one element, check to see if it has exactly 2 chars
+				// If there are exactly two elements, check to see if they're both 1 char long
+				// Else REJECT ENTRY
+			// Check to see if they're valid coordinates (letter THEN number)
+				// If yes, user has made shot!
+				// If no, REJECT ENTRY
+	// If REJECT ENTRY, clear console and inform the user that the attempt was bad... then ask again

@@ -1,0 +1,7 @@
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\TargetHeartRateCalculator\TargetHeartRateCalculator\bin\Debug\TargetHeartRateCalculator.exe.config
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\TargetHeartRateCalculator\TargetHeartRateCalculator\bin\Debug\TargetHeartRateCalculator.exe
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\TargetHeartRateCalculator\TargetHeartRateCalculator\bin\Debug\TargetHeartRateCalculator.pdb
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\TargetHeartRateCalculator\TargetHeartRateCalculator\obj\Debug\TargetHeartRateCalculator.csprojResolveAssemblyReference.cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\TargetHeartRateCalculator\TargetHeartRateCalculator\obj\Debug\TargetHeartRateCalculator.csproj.CoreCompileInputs.cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\TargetHeartRateCalculator\TargetHeartRateCalculator\obj\Debug\TargetHeartRateCalculator.exe
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\TargetHeartRateCalculator\TargetHeartRateCalculator\obj\Debug\TargetHeartRateCalculator.pdb

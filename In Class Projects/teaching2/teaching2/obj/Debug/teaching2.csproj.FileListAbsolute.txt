@@ -1,0 +1,15 @@
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\bin\Debug\teaching2.exe.config
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\bin\Debug\teaching2.exe
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\bin\Debug\teaching2.pdb
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\obj\Debug\teaching2.csprojResolveAssemblyReference.cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\obj\Debug\teaching2.csproj.CoreCompileInputs.cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\obj\Debug\teaching2.exe
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\obj\Debug\teaching2.pdb
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\bin\Debug\teaching2.exe.config
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\bin\Debug\teaching2.exe
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\bin\Debug\teaching2.pdb
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\obj\Debug\teaching2.csprojResolveAssemblyReference.cache
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\obj\Debug\teaching2.csproj.CoreCompileInputs.cache
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\obj\Debug\teaching2.exe
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\obj\Debug\teaching2.pdb
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\teaching2\teaching2\bin\Debug\Yakaas.Words.dll

@@ -1,0 +1,10 @@
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\bin\Debug\GUITesting1.exe.config
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\bin\Debug\GUITesting1.exe
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\bin\Debug\GUITesting1.pdb
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\obj\Debug\GUITesting1.csprojResolveAssemblyReference.cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\obj\Debug\GUITesting1.MainForm.resources
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\obj\Debug\GUITesting1.Properties.Resources.resources
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\obj\Debug\GUITesting1.csproj.GenerateResource.Cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\obj\Debug\GUITesting1.csproj.CoreCompileInputs.cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\obj\Debug\GUITesting1.exe
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\In Class Projects\GUITesting1\GUITesting1\obj\Debug\GUITesting1.pdb

@@ -1,0 +1,16 @@
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.exe.config
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.exe
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.pdb
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\System.ValueTuple.dll
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.csprojResolveAssemblyReference.cache
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.csproj.CoreCompileInputs.cache
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.exe
+C:\Users\Luke\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.pdb
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.exe.config
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.exe
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.pdb
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\System.ValueTuple.dll
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.csprojResolveAssemblyReference.cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.csproj.CoreCompileInputs.cache
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.exe
+C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.pdb
