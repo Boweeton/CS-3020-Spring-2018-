@@ -106,7 +106,6 @@ namespace SODERSTROM_HW_1
         void PlaceBoatsByRandom(List<Boat> boatList)
         {
             // Local Declarations
-            List<Pair2D> coordinatesOwnedByBoatsAlready = new List<Pair2D>();
             Random rng = new Random();
 
             // Sort the bot list from largest to smallest
@@ -115,147 +114,24 @@ namespace SODERSTROM_HW_1
             // Assign a random direction to each boat
             foreach (Boat boat in boatList)
             {
-                //boat.Direction = (BoatDirection)rng.Next(0, 5);
-                boat.Direction = BoatDirection.Up;
+                boat.Direction = (BoatDirection)rng.Next(0, 5);
             }
 
-            // Choose a location for each boat and set the coordinate pairs it owns
+            // Go through each boat
             foreach (Boat boat in boatList)
             {
-                bool hasFoundOpenSpot = false;
+                // Assemble a list of the proposed Pair2D coordinates
+                List<Pair2D> proposedCoordinatePairs = new List<Pair2D>();
+                int baseX = rng.Next(0, BoardSize);
+                int baseY = rng.Next(0, BoardSize);
 
-                while (!hasFoundOpenSpot)
+                for (int i = 0; i < boat.Length; i++)
                 {
-                    // Choose a random starting point
-                    int baseX = rng.Next(0, BoardSize);
-                    int baseY = rng.Next(0, BoardSize);
-                    Pair2D checkPair = new Pair2D(baseX, baseY);
-
-                    switch (boat.Direction)
-                    {
-                        case BoatDirection.Up:
-                            // First check if randomY - boat.Length is off the map
-                            if (baseY - boat.Length < 0)
-                            {
-                                continue;
-                            }
-
-                            // Loop through the proposed cells and see if another boat owns it
-                            for (int i = 0; i > boat.Length; i--)
-                            {
-                                checkPair.Y = baseY + i;
-
-                                if (coordinatesOwnedByBoatsAlready.Contains(checkPair))
-                                {
-                                    continue;
-                                }
-                            }
-
-                            // If we get here, go through those cells again and set the boat to own thos coordinates and add them to the already occupied list
-                            hasFoundOpenSpot = true;
-                            checkPair = new Pair2D(baseX, baseY);
-                            for (int i = 0; i > boat.Length; i--)
-                            {
-                                checkPair.Y = baseY + i;
-
-                                boat.CoordinatesOwned.Add(new Pair2D(checkPair.X, checkPair.Y));
-                                coordinatesOwnedByBoatsAlready.Add(new Pair2D(checkPair.X, checkPair.Y));
-                            }
-                            break;
-
-                        case BoatDirection.Right:
-                            // First check if randomX + boat.Length is off the map
-                            if (baseX + boat.Length >= BoardSize)
-                            {
-                                continue;
-                            }
-
-                            // Loop through the proposed cells and see if another boat owns it
-                            for (int i = 0; i < boat.Length; i++)
-                            {
-                                checkPair.X = baseX + i;
-
-                                if (coordinatesOwnedByBoatsAlready.Contains(checkPair))
-                                {
-                                    continue;
-                                }
-                            }
-
-                            // If we get here, go through those cells again and set the boat to own thos coordinates and add them to the already occupied list
-                            hasFoundOpenSpot = true;
-                            checkPair = new Pair2D(baseX, baseY);
-                            for (int i = 0; i < boat.Length; i++)
-                            {
-                                checkPair.X = baseX + i;
-
-                                boat.CoordinatesOwned.Add(new Pair2D(checkPair.X, checkPair.Y));
-                                coordinatesOwnedByBoatsAlready.Add(new Pair2D(checkPair.X, checkPair.Y));
-                            }
-                            break;
-
-                        case BoatDirection.Down:
-                            // First check if randomY - boat.Length is off the map
-                            if (baseY + boat.Length >= BoardSize)
-                            {
-                                continue;
-                            }
-
-                            // Loop through the proposed cells and see if another boat owns it
-                            for (int i = 0; i < boat.Length; i++)
-                            {
-                                checkPair.Y = baseY + i;
-
-                                if (coordinatesOwnedByBoatsAlready.Contains(checkPair))
-                                {
-                                    continue;
-                                }
-                            }
-
-                            // If we get here, go through those cells again and set the boat to own thos coordinates and add them to the already occupied list
-                            hasFoundOpenSpot = true;
-                            checkPair = new Pair2D(baseX, baseY);
-                            for (int i = 0; i < boat.Length; i++)
-                            {
-                                checkPair.Y = baseY + i;
-
-                                boat.CoordinatesOwned.Add(new Pair2D(checkPair.X, checkPair.Y));
-                                coordinatesOwnedByBoatsAlready.Add(new Pair2D(checkPair.X, checkPair.Y));
-                            }
-                            break;
-
-                        case BoatDirection.Left:
-                            // First check if randomX - boat.Length is off the map
-                            if (baseX - boat.Length < 0)
-                            {
-                                continue;
-                            }
-
-                            // Loop through the proposed cells and see if another boat owns it
-                            for (int i = 0; i > boat.Length; i--)
-                            {
-                                checkPair.X = baseX + i;
-
-                                if (coordinatesOwnedByBoatsAlready.Contains(checkPair))
-                                {
-                                    continue;
-                                }
-                            }
-
-                            // If we get here, go through those cells again and set the boat to own thos coordinates and add them to the already occupied list
-                            hasFoundOpenSpot = true;
-                            checkPair = new Pair2D(baseX, baseY);
-                            for (int i = 0; i > boat.Length; i--)
-                            {
-                                checkPair.X = baseX + i;
-
-                                boat.CoordinatesOwned.Add(new Pair2D(checkPair.X, checkPair.Y));
-                                coordinatesOwnedByBoatsAlready.Add(new Pair2D(checkPair.X, checkPair.Y));
-                            }
-                            break;
-                    }
+                    
                 }
             }
         }
+
 
         /// <summary>
         /// Takes the user input that is expected to be a letter and a number (in that order) and returns it, translated into a Pair2D. Will return null if anything else.
@@ -292,7 +168,6 @@ namespace SODERSTROM_HW_1
                     {
                         return null;
                     }
-                    break;
 
                 case 2:
                     // If element 0 is the letter and element 1 is the number
@@ -312,7 +187,6 @@ namespace SODERSTROM_HW_1
                     {
                         return null;
                     }
-                    break;
 
                 default:
                     return null;

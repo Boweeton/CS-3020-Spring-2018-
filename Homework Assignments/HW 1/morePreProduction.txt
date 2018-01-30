@@ -1,2 +1,0 @@
-// Assemble the list of proposed Pair2D coordinates
-// 

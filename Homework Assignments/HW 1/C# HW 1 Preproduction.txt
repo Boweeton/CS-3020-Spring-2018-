@@ -1,7 +1,17 @@
 C# HW 1 Preproduction: 
 
 Initialize New Game:
-// 
+// For each boat
+	// Assemble the list of proposed Pair2D coordinates
+
+	// For each pair
+		// Is out of the map?
+			// If yes, start over
+		// Is owned by another boat?
+			// If yes, start over
+
+	// Impose the assembled list to the boat
+
 
 Game Loop:
 // User makes a shot
