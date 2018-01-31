@@ -13,7 +13,7 @@ namespace SODERSTROM_HW_1
         const int BoardSize = 10;
         readonly List<Boat> boats = new List<Boat>();
         readonly BoardCell [,] cells = new BoardCell[BoardSize, BoardSize];
-        bool allBoatsAreDead = false;
+        bool allBoatsAreDead;
         const int ConsoleWidth = 48;
         const int ConsoleHeight = 30;
 
@@ -47,6 +47,8 @@ namespace SODERSTROM_HW_1
         /// </summary>
         public void OpenGameMenu()
         {
+            // Initial Settings
+            allBoatsAreDead = false;
 
             // Setting the console settings
             Console.WindowWidth = ConsoleWidth;
@@ -207,14 +209,36 @@ namespace SODERSTROM_HW_1
             }
 
             // Go into Victoy Visual!
-            Console.Clear();
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Green;
-            PrintCentered("You Won!\n", ConsoleWidth);
-            SetColorsByDefault();
+            char userChoice = 'x';
+            while (userChoice != 'Y' && userChoice != 'N')
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                PrintCentered("You Won!\n", ConsoleWidth);
+                SetColorsByDefault();
 
-            // Report the time taken to the user
-            Console.WriteLine($"It only took you {(gameTimer.ElapsedMilliseconds/1000) / 60:F0} minute(s) and {(gameTimer.ElapsedMilliseconds / 1000) % 60} second(s)");
+                // Report the time taken to the user
+                Console.WriteLine($"It only took you {(gameTimer.ElapsedMilliseconds / 1000) / 60:F0} minute(s) and {(gameTimer.ElapsedMilliseconds / 1000) % 60} second(s)");
+
+                // Propose new game
+                Console.CursorVisible = false;
+                PrintCentered("Play again? (Y or N)", ConsoleWidth);
+                char.TryParse(Console.ReadKey().KeyChar.ToString().ToUpper(), out userChoice);
+
+                switch (userChoice)
+                {
+                    case 'Y':
+                        OpenGameMenu();
+                        Environment.Exit(0);
+                        break;
+                    case 'N':
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+            Console.CursorVisible = true;
+
         }
 
         /// <summary>
