@@ -50,6 +50,13 @@ namespace SODERSTROM_HW_1
             }
         }
 
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return $"1x{Length}     {Direction}";
+        }
+
         #endregion
     }
 }

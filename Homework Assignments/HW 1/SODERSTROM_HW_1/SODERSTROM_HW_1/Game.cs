@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Schema;
 
 namespace SODERSTROM_HW_1
 {
@@ -57,6 +54,7 @@ namespace SODERSTROM_HW_1
             Console.Write("Enter your name: ");
             Console.ReadLine();
 
+
             // Create the boats
             boats.Add(new Boat(5));
             boats.Add(new Boat(4));
@@ -68,7 +66,7 @@ namespace SODERSTROM_HW_1
 
             // Master Game Loop
             ForceCellsByGradingMode();
-            UpdateVisuals();
+            UpdateConsoleVisuals();
             while (!allBoatsAreDead)
             {
                 // Loop until user inputs a valid shot
@@ -87,7 +85,7 @@ namespace SODERSTROM_HW_1
                     // Inform the user if their shot is invalid
                     if (userShot == null)
                     {
-                        UpdateVisuals();
+                        UpdateConsoleVisuals();
                         PlayInvalidEntrySound();
                         Console.WriteLine();
                         Console.WriteLine("(Invalid format)");
@@ -99,10 +97,10 @@ namespace SODERSTROM_HW_1
                 }
 
                 // Once the user has input valid data, make the shot
-                Boat reportBoat = MakeAShot(userShot.X, userShot.Y);
+                bool killedBoat = MakeAShot(userShot.X, userShot.Y);
 
                 // Update the visuals and check to see if all the boats are dead
-                UpdateVisuals();
+                UpdateConsoleVisuals();
                 allBoatsAreDead = true;
                 foreach (Boat boat in boats)
                 {
@@ -113,9 +111,9 @@ namespace SODERSTROM_HW_1
                 }
 
                 // If a boat is destroyed, play the death sound and inform the user what kind of boat they've killed
-                if (reportBoat != null)
+                if (killedBoat)
                 {
-                    PlayDeathVisualAndSound(reportBoat);
+                    PlayBoatDestroyedVisualAndSound();
                 }
             }
 
@@ -123,13 +121,17 @@ namespace SODERSTROM_HW_1
 
         }
 
+        /// <summary>
+        /// Places the list of boats on the gameboard.
+        /// </summary>
+        /// <param name="boatList"></param>
         void PlaceBoatsByRandom(List<Boat> boatList)
         {
             // Local Declarations
             Random rng = new Random();
 
             // Sort the boat list from largest to smallest
-            boatList = boatList.OrderBy(boat => boat.Length).ToList();
+            boatList = boatList.OrderByDescending(boat => boat.Length).ToList();
 
             // Assign a random direction to each boat
             foreach (Boat boat in boatList)
@@ -156,19 +158,19 @@ namespace SODERSTROM_HW_1
                     currentBoatHasBeenPlaced = true;
 
                     // Choose new location base
-                    baseY = rng.Next(0, BoardSize - boat.Length);
                     baseX = rng.Next(0, BoardSize - boat.Length);
+                    baseY = rng.Next(0, BoardSize - boat.Length);
 
                     // Choose new location end
-                    if (boat.Direction == BoatDirection.Right)
+                    if (boat.Direction == BoatDirection.Down)
                     {
-                        endX = baseX + boat.Length;
+                        endX = (baseX + boat.Length) - 1;
                         endY = baseY;
                     }
                     else
                     {
                         endX = baseX;
-                        endY = baseY + boat.Length;
+                        endY = (baseY + boat.Length) - 1;
                     }
 
                     // Loop through each proposed cell to see if it's owned by another boat
@@ -178,9 +180,12 @@ namespace SODERSTROM_HW_1
                         {
                             foreach (Boat checkBoat in boats)
                             {
-                                if (checkBoat.CoordinatesOwned.Contains(new Pair2D(i,j)))
+                                foreach (Pair2D pair2D in checkBoat.CoordinatesOwned)
                                 {
-                                    currentBoatHasBeenPlaced = false;
+                                    if (pair2D.X == i && pair2D.Y == j)
+                                    {
+                                        currentBoatHasBeenPlaced = false;
+                                    }
                                 }
                             }
                         }
@@ -191,13 +196,12 @@ namespace SODERSTROM_HW_1
                 boat.TakeOwnershipOfPairs(baseX, baseY, endX, endY);
             }
         }
-
-
+        
         /// <summary>
         /// Takes the user input that is expected to be a letter and a number (in that order) and returns it, translated into a Pair2D. Will return null if anything else.
         /// </summary>
         /// <param name="userInput"></param>
-        /// <returns></returns>
+        /// <returns>Returns a Pair2D that represents the user's shot choice.</returns>
         Pair2D ParseUserShotInput(string userInput)
         {
             // Local Declarations
@@ -258,7 +262,7 @@ namespace SODERSTROM_HW_1
         /// </summary>
         /// <param name="xShotAt">The x coordinate.</param>
         /// <param name="yShotAt">The y coordinate.</param>
-        Boat MakeAShot(int xShotAt, int yShotAt)
+        bool MakeAShot(int xShotAt, int yShotAt)
         {
             // For each boat in the list of boats
             foreach (Boat boat in boats)
@@ -273,20 +277,20 @@ namespace SODERSTROM_HW_1
                         cells[xShotAt, yShotAt].BoardState = 'x';
 
                         // Check to see if the boat is fully destroyed
-                        return CheckForBoatFullyDestroyed(boat) ? boat : null;
+                        return CheckForBoatFullyDestroyed(boat);
                     }
                 }
             }
 
             // If not, go and make that corresponding BoardCell's value = 'x'
             cells[xShotAt, yShotAt].BoardState = 'o';
-            return null;
+            return false;
 
             // Local Functions
             bool CheckForBoatFullyDestroyed(Boat boat)
             {
                 // Local Declarations
-                bool isDestroyed = false;
+                bool isDestroyed = true;
 
                 // Loop through each coordinate pair the boat owns
                 foreach (Pair2D pair in boat.CoordinatesOwned)
@@ -304,7 +308,7 @@ namespace SODERSTROM_HW_1
         /// <summary>
         /// Clears the console and prints the game state with the new changes.
         /// </summary>
-        void UpdateVisuals()
+        void UpdateConsoleVisuals()
         {
             // Clear the console
             Console.Clear();
@@ -365,6 +369,9 @@ namespace SODERSTROM_HW_1
             }
         }
 
+        /// <summary>
+        /// Go through and mark on the map where the boats are for easy grading purposes (and those who don't like challenge).
+        /// </summary>
         void ForceCellsByGradingMode()
         {
             for (int i = 0; i < BoardSize; i++)
@@ -404,23 +411,26 @@ namespace SODERSTROM_HW_1
         /// <summary>
         /// Prints a boat death message and plays some beeps.
         /// </summary>
-        void PlayDeathVisualAndSound(Boat boat)
+        void PlayBoatDestroyedVisualAndSound()
         {
             // Print extra line and report data and play sound
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Congrats! You destroyed a size {boat.Length} boat.");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Congrats! You destroyed a boat.");
             SetColorsByDefault();
             Console.WriteLine();
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadLine();
+            Console.CursorVisible = false;
+            Console.Write("Press any key to continue...");
 
             // The beeps
             Console.Beep(165, 70);
             Console.Beep(165, 70);
             Console.Beep(165, 70);
-            Console.Beep(131, 800);
+            Console.Beep(370, 800);
             Thread.Sleep(60);
+            Console.ReadLine();
+            Console.CursorVisible = true;
+            UpdateConsoleVisuals();
         }
 
         /// <summary>
