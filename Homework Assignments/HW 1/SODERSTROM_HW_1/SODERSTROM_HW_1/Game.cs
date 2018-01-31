@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -14,8 +15,9 @@ namespace SODERSTROM_HW_1
         readonly List<Boat> boats = new List<Boat>();
         readonly BoardCell [,] cells = new BoardCell[BoardSize, BoardSize];
         bool allBoatsAreDead;
+        int deadBoatCount;
         const int ConsoleWidth = 48;
-        const int ConsoleHeight = 30;
+        const int ConsoleHeight = 34;
 
         #endregion
 
@@ -49,6 +51,8 @@ namespace SODERSTROM_HW_1
         {
             // Initial Settings
             allBoatsAreDead = false;
+            deadBoatCount = 0;
+            FlushBoard();
 
             // Setting the console settings
             Console.WindowWidth = ConsoleWidth;
@@ -147,7 +151,7 @@ namespace SODERSTROM_HW_1
             Console.ReadLine();
 
             // First initializations
-            UpdateConsoleVisuals();
+            UpdateInGameVisual();
             Stopwatch gameTimer = new Stopwatch();
             gameTimer.Start();
 
@@ -170,7 +174,7 @@ namespace SODERSTROM_HW_1
                     // Inform the user if their shot is invalid
                     if (userShot == null)
                     {
-                        UpdateConsoleVisuals();
+                        UpdateInGameVisual();
                         PlayInvalidEntrySound();
                         Console.WriteLine();
                         Console.WriteLine("(Invalid format)");
@@ -185,7 +189,7 @@ namespace SODERSTROM_HW_1
                 bool killedBoat = MakeAShot(userShot.X, userShot.Y);
 
                 // Update the visuals and check to see if all the boats are dead
-                UpdateConsoleVisuals();
+                UpdateInGameVisual();
                 allBoatsAreDead = true;
                 foreach (Boat boat in boats)
                 {
@@ -397,7 +401,7 @@ namespace SODERSTROM_HW_1
                         cells[xShotAt, yShotAt].BoardState = 'x';
 
                         // Check to see if the boat is fully destroyed
-                        boat.IsDestroyed = CheckForBoatFullyDestroyed(boat);
+                        CheckForBoatFullyDestroyed(boat);
                         return boat.IsDestroyed;
                     }
                 }
@@ -408,34 +412,51 @@ namespace SODERSTROM_HW_1
             return false;
 
             // Local Functions
-            bool CheckForBoatFullyDestroyed(Boat boat)
+            void CheckForBoatFullyDestroyed(Boat boat)
             {
                 // Local Declarations
-                bool isFullyDestroyed = true;
+                bool decision = true;
 
                 // Loop through each coordinate pair the boat owns
                 foreach (Pair2D pair in boat.CoordinatesOwned)
                 {
                     if (cells[pair.X, pair.Y].BoardState != 'x')
                     {
-                        isFullyDestroyed = false;
+                        decision = false;
                     }
                 }
 
-                return isFullyDestroyed;
+                boat.IsDestroyed = decision;
+
+                if (decision)
+                {
+                    deadBoatCount++;
+                }
             }
         }
 
         /// <summary>
         /// Clears the console and prints the game state with the new changes.
         /// </summary>
-        void UpdateConsoleVisuals()
+        void UpdateInGameVisual()
         {
             // Clear the console
             Console.Clear();
 
-            // Print the top area of the game board
+            // Print the status of the player
             SetColorsByDefault();
+            Console.WriteLine();
+            PrintCentered($"Boats Destroyed: {deadBoatCount}\tBoats Left: {boats.Count - deadBoatCount}\n", ConsoleWidth);
+            
+            // Print Partition
+            for (int i = 0; i < ConsoleWidth; i++)
+            {
+                Console.Write("_");
+            }
+
+            Console.WriteLine();
+
+            // Print the top area of the game board
             Console.WriteLine("       0   1   2   3   4   5   6   7   8   9");
             PrintNeatPartition();
 
@@ -544,14 +565,15 @@ namespace SODERSTROM_HW_1
             Console.Write("Press any key to continue...");
 
             // The beeps
-            Console.Beep(165, 70);
-            Console.Beep(165, 70);
-            Console.Beep(165, 70);
-            Console.Beep(370, 800);
+            Console.Beep(130, 180);
+            Thread.Sleep(5);
+            Console.Beep(165, 120);
+            Thread.Sleep(5);
+            Console.Beep(294, 1000);
             Thread.Sleep(60);
             Console.ReadKey();
             Console.CursorVisible = true;
-            UpdateConsoleVisuals();
+            UpdateInGameVisual();
         }
 
         /// <summary>
@@ -619,6 +641,20 @@ namespace SODERSTROM_HW_1
 
             // Print the message
             Console.Write(message);
+        }
+
+        /// <summary>
+        /// Reset all board cells to be ' ' chars.
+        /// </summary>
+        void FlushBoard()
+        {
+            for (int i = 0; i < BoardSize; i++)
+            {
+                for (int j = 0; j < BoardSize; j++)
+                {
+                    cells[i, j].BoardState = ' ';
+                }
+            }
         }
 
         #endregion
