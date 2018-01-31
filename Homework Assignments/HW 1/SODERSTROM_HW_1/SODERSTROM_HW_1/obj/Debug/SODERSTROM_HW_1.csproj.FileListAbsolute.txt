@@ -14,3 +14,11 @@ C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\
 C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.csproj.CoreCompileInputs.cache
 C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.exe
 C:\Users\Boweeton\Google Drive\___SCHOOL___\(Spring 2018) C# & .NET Programming\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.pdb
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.exe.config
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.exe
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\SODERSTROM_HW_1.pdb
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Debug\System.ValueTuple.dll
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.csprojResolveAssemblyReference.cache
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.csproj.CoreCompileInputs.cache
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.exe
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Debug\SODERSTROM_HW_1.pdb

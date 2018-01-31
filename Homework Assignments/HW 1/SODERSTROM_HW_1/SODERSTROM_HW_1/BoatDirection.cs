@@ -2,9 +2,7 @@
 {
     public enum BoatDirection
     {
-        Up,
         Right,
-        Down,
-        Left
+        Down
     }
 }
