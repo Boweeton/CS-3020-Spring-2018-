@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SODERSTROM_HW_1
 {
@@ -14,6 +14,8 @@ namespace SODERSTROM_HW_1
         readonly List<Boat> boats = new List<Boat>();
         readonly BoardCell [,] cells = new BoardCell[BoardSize, BoardSize];
         bool allBoatsAreDead = false;
+        const int ConsoleWidth = 48;
+        const int ConsoleHeight = 30;
 
         #endregion
 
@@ -40,33 +42,114 @@ namespace SODERSTROM_HW_1
 
         #region Methods
 
-        public void BeginGameLoop()
+        /// <summary>
+        /// Opens the game menu.
+        /// </summary>
+        public void OpenGameMenu()
         {
+
             // Setting the console settings
-            Console.WindowWidth = 48;
-            Console.WindowHeight = 30;
-            Console.BufferWidth = 48;
-            Console.BufferHeight = 30;
+            Console.WindowWidth = ConsoleWidth;
+            Console.WindowHeight = ConsoleHeight;
+            Console.BufferWidth = ConsoleWidth;
+            Console.BufferHeight = ConsoleHeight;
             Console.Title = "Luke's Battleship Game";
 
+            // Begin Menu Loop
+
+            while (!allBoatsAreDead)
+            {
+                // Print menu
+                Console.Clear();
+                PresentMainMenu();
+                Console.CursorVisible = false;
+                char.TryParse(Console.ReadKey().KeyChar.ToString().ToUpper(), out char userChoice);
+                Console.CursorVisible = true;
+
+                // Process entry
+                switch (userChoice)
+                {
+                    case 'B':
+                        BeginGameNormally();
+                        break;
+                    case 'G':
+                        BeginGameInGradingMode();
+                        break;
+                    case 'Q':
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+
+            // Local Functions
+            void PresentMainMenu()
+            {
+                Console.Clear();
+
+                // Intro text
+                Console.WriteLine();
+                PrintCentered("Welcome to Luke's Battleship\n\n", ConsoleWidth);
+                PrintCentered("- - - - - - - - - - - - - - - - - -\n\n", ConsoleWidth);
+
+                // Present Manu options
+                PrintLeftJust("B - Begin Game (in normal mode)\n", ConsoleWidth);
+                PrintLeftJust("G - Begin Game (in Chris' grading mode)\n", ConsoleWidth);
+                PrintLeftJust("Q - Quit Game\n", ConsoleWidth);
+
+            }
+
+            void BeginGameNormally()
+            {
+                Console.Clear();
+
+                // Create the boats
+                boats.Add(new Boat(5));
+                boats.Add(new Boat(4));
+                boats.Add(new Boat(3));
+                boats.Add(new Boat(3));
+                boats.Add(new Boat(2));
+                boats.Add(new Boat(2));
+                PlaceBoatsByRandom(boats);
+
+                // Start the game
+                MasterGameLoop();
+            }
+
+            void BeginGameInGradingMode()
+            {
+                Console.Clear();
+
+                // Create the boats
+                boats.Add(new Boat(5));
+                boats.Add(new Boat(4));
+                boats.Add(new Boat(3));
+                boats.Add(new Boat(3));
+                boats.Add(new Boat(2));
+                boats.Add(new Boat(2));
+                PlaceBoatsByRandom(boats);
+                ForceCellsByGradingMode();
+
+                // Start the game
+                MasterGameLoop();
+            }
+        }
+
+        /// <summary>
+        /// Master Game Loop to run the game
+        /// </summary>
+        public void MasterGameLoop()
+        {
             // Ask for the user's name, and not give a shit
             Console.WriteLine();
             Console.Write("Enter your name: ");
             Console.ReadLine();
 
-
-            // Create the boats
-            boats.Add(new Boat(5));
-            boats.Add(new Boat(4));
-            boats.Add(new Boat(3));
-            boats.Add(new Boat(3));
-            boats.Add(new Boat(2));
-            boats.Add(new Boat(2));
-            PlaceBoatsByRandom(boats);
+            // First initializations
+            UpdateConsoleVisuals();
+            Stopwatch gameTimer = new Stopwatch();
+            gameTimer.Start();
 
             // Master Game Loop
-            ForceCellsByGradingMode();
-            UpdateConsoleVisuals();
             while (!allBoatsAreDead)
             {
                 // Loop until user inputs a valid shot
@@ -110,6 +193,12 @@ namespace SODERSTROM_HW_1
                     }
                 }
 
+                // Stop the gameTimer if all the boats are daed
+                if (allBoatsAreDead)
+                {
+                    gameTimer.Stop();
+                }
+
                 // If a boat is destroyed, play the death sound and inform the user what kind of boat they've killed
                 if (killedBoat)
                 {
@@ -118,7 +207,14 @@ namespace SODERSTROM_HW_1
             }
 
             // Go into Victoy Visual!
+            Console.Clear();
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            PrintCentered("You Won!\n", ConsoleWidth);
+            SetColorsByDefault();
 
+            // Report the time taken to the user
+            Console.WriteLine($"It only took you {(gameTimer.ElapsedMilliseconds/1000) / 60:F0} minute(s) and {(gameTimer.ElapsedMilliseconds / 1000) % 60} second(s)");
         }
 
         /// <summary>
@@ -196,7 +292,7 @@ namespace SODERSTROM_HW_1
                 boat.TakeOwnershipOfPairs(baseX, baseY, endX, endY);
             }
         }
-        
+
         /// <summary>
         /// Takes the user input that is expected to be a letter and a number (in that order) and returns it, translated into a Pair2D. Will return null if anything else.
         /// </summary>
@@ -277,7 +373,8 @@ namespace SODERSTROM_HW_1
                         cells[xShotAt, yShotAt].BoardState = 'x';
 
                         // Check to see if the boat is fully destroyed
-                        return CheckForBoatFullyDestroyed(boat);
+                        boat.IsDestroyed = CheckForBoatFullyDestroyed(boat);
+                        return boat.IsDestroyed;
                     }
                 }
             }
@@ -290,18 +387,18 @@ namespace SODERSTROM_HW_1
             bool CheckForBoatFullyDestroyed(Boat boat)
             {
                 // Local Declarations
-                bool isDestroyed = true;
+                bool isFullyDestroyed = true;
 
                 // Loop through each coordinate pair the boat owns
                 foreach (Pair2D pair in boat.CoordinatesOwned)
                 {
                     if (cells[pair.X, pair.Y].BoardState != 'x')
                     {
-                        isDestroyed = false;
+                        isFullyDestroyed = false;
                     }
                 }
 
-                return isDestroyed;
+                return isFullyDestroyed;
             }
         }
 
@@ -428,7 +525,7 @@ namespace SODERSTROM_HW_1
             Console.Beep(165, 70);
             Console.Beep(370, 800);
             Thread.Sleep(60);
-            Console.ReadLine();
+            Console.ReadKey();
             Console.CursorVisible = true;
             UpdateConsoleVisuals();
         }
@@ -445,7 +542,7 @@ namespace SODERSTROM_HW_1
         /// <summary>
         /// Change the console background to <see cref="ConsoleColor.Black"/> and the foreground color to <see cref="ConsoleColor.White"/>
         /// </summary>
-        public void SetColorsByDefault()
+        void SetColorsByDefault()
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
@@ -454,10 +551,50 @@ namespace SODERSTROM_HW_1
         /// <summary>
         /// Change the console background to <see cref="ConsoleColor.DarkBlue"/> and the foreground color to <see cref="ConsoleColor.White"/>
         /// </summary>
-        public void SetColorsByGrid()
+        void SetColorsByGrid()
         {
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        /// <summary>
+        /// Prints the message in the center of the console given the console width constant (does not print new line character by default).
+        /// </summary>
+        /// <param name="message">The message to be printed in the console.</param>
+        /// <param name="consoleWidth">The set width of the console.</param>
+        void PrintCentered(string message, int consoleWidth)
+        {
+            // Calculate buffer
+            int buffer = (consoleWidth - message.Length) / 2;
+
+            // Print the buffer
+            for (int i = 0; i < buffer; i++)
+            {
+                Console.Write(" ");
+            }
+
+            // Print the message
+            Console.Write(message);
+        }
+
+        /// <summary>
+        /// Prints the message justified left with some buffer space given the console width constant (does not print new line character by default).
+        /// </summary>
+        /// <param name="message">The message to be printed in the console.</param>
+        /// <param name="consoleWidth">The set width of the console.</param>
+        void PrintLeftJust(string message, int consoleWidth)
+        {
+            // Calculate buffer
+            int buffer = consoleWidth / 8;
+
+            // Print the buffer
+            for (int i = 0; i < buffer; i++)
+            {
+                Console.Write(" ");
+            }
+
+            // Print the message
+            Console.Write(message);
         }
 
         #endregion

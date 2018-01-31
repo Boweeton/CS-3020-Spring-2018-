@@ -11,7 +11,7 @@ namespace SODERSTROM_HW_1
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.BeginGameLoop();
+            game.OpenGameMenu();
         }
     }
 }

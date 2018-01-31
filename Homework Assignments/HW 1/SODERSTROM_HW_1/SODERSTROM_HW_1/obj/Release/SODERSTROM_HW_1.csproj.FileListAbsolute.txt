@@ -1,0 +1,7 @@
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Release\SODERSTROM_HW_1.exe.config
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Release\SODERSTROM_HW_1.exe
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Release\SODERSTROM_HW_1.pdb
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\bin\Release\System.ValueTuple.dll
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Release\SODERSTROM_HW_1.csproj.CoreCompileInputs.cache
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Release\SODERSTROM_HW_1.exe
+E:\GitHub\CS-3020-Spring-2018\Homework Assignments\HW 1\SODERSTROM_HW_1\SODERSTROM_HW_1\obj\Release\SODERSTROM_HW_1.pdb
