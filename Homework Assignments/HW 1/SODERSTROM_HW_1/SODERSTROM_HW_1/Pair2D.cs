@@ -35,23 +35,7 @@ namespace SODERSTROM_HW_1
 
         #region Methods
 
-        #region Public Methods
 
-
-
-        #endregion
-
-        #region Protected Methods
-
-
-
-        #endregion
-
-        #region Private Methods
-
-
-
-        #endregion
 
         #endregion
     }

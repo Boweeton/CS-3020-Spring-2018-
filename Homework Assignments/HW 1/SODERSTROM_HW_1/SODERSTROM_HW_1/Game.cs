@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace SODERSTROM_HW_1
 {
-    class Game
+    internal class Game
     {
         #region Fields
 
@@ -16,6 +16,7 @@ namespace SODERSTROM_HW_1
         readonly BoardCell [,] cells = new BoardCell[BoardSize, BoardSize];
         bool allBoatsAreDead;
         int deadBoatCount;
+        int shotCount;
         const int ConsoleWidth = 48;
         const int ConsoleHeight = 34;
 
@@ -52,6 +53,7 @@ namespace SODERSTROM_HW_1
             // Initial Settings
             allBoatsAreDead = false;
             deadBoatCount = 0;
+            shotCount = 0;
             FlushBoard();
 
             // Setting the console settings
@@ -223,7 +225,12 @@ namespace SODERSTROM_HW_1
                 SetColorsByDefault();
 
                 // Report the time taken to the user
-                Console.WriteLine($"It only took you {(gameTimer.ElapsedMilliseconds / 1000) / 60:F0} minute(s) and {(gameTimer.ElapsedMilliseconds / 1000) % 60} second(s)");
+                PrintCentered($"It only took you {(gameTimer.ElapsedMilliseconds / 1000) / 60:F0} minute(s) and {(gameTimer.ElapsedMilliseconds / 1000) % 60} second(s)\n", ConsoleWidth);
+
+                // Report how many shots were taken
+                Console.WriteLine();
+                PrintCentered($"You made {shotCount} shots\n", ConsoleWidth);
+                Console.WriteLine();
 
                 // Propose new game
                 Console.CursorVisible = false;
@@ -257,12 +264,6 @@ namespace SODERSTROM_HW_1
             // Sort the boat list from largest to smallest
             boatList = boatList.OrderByDescending(boat => boat.Length).ToList();
 
-            // Assign a random direction to each boat
-            foreach (Boat boat in boatList)
-            {
-                boat.Direction = (BoatDirection)rng.Next(0, 2);
-            }
-
             // Go through each boat
             foreach (Boat boat in boatList)
             {
@@ -281,18 +282,19 @@ namespace SODERSTROM_HW_1
                     // Make the test boolean true to pass if it's not made false later
                     currentBoatHasBeenPlaced = true;
 
-                    // Choose new location base
-                    baseX = rng.Next(0, BoardSize - boat.Length);
-                    baseY = rng.Next(0, BoardSize - boat.Length);
-
-                    // Choose new location end
+                    // Choose new location base and location end
+                    boat.Direction = (BoatDirection)rng.Next(0, 2);
                     if (boat.Direction == BoatDirection.Down)
                     {
+                        baseX = rng.Next(0, BoardSize - boat.Length);
+                        baseY = rng.Next(0, BoardSize);
                         endX = (baseX + boat.Length) - 1;
                         endY = baseY;
                     }
                     else
                     {
+                        baseX = rng.Next(0, BoardSize);
+                        baseY = rng.Next(0, BoardSize - boat.Length);
                         endX = baseX;
                         endY = (baseY + boat.Length) - 1;
                     }
@@ -388,6 +390,9 @@ namespace SODERSTROM_HW_1
         /// <param name="yShotAt">The y coordinate.</param>
         bool MakeAShot(int xShotAt, int yShotAt)
         {
+            // Increment shotCount
+            shotCount++;
+
             // For each boat in the list of boats
             foreach (Boat boat in boats)
             {
@@ -457,7 +462,14 @@ namespace SODERSTROM_HW_1
             Console.WriteLine();
 
             // Print the top area of the game board
-            Console.WriteLine("       0   1   2   3   4   5   6   7   8   9");
+            Console.Write("    ");
+
+            for (int i = 0; i < BoardSize; i++)
+            {
+                Console.Write($"   {i}");
+            }
+            Console.WriteLine();
+
             PrintNeatPartition();
 
             // Print the whole game board
@@ -505,7 +517,13 @@ namespace SODERSTROM_HW_1
                 SetColorsByDefault();
                 Console.Write("     ");
                 SetColorsByGrid();
-                Console.Write("+---+---+---+---+---+---+---+---+---+---+");
+                Console.Write("+");
+
+                for (int i = 0; i < BoardSize; i++)
+                {
+                    Console.Write("---+");
+                }
+
                 SetColorsByDefault();
                 Console.WriteLine();
             }
