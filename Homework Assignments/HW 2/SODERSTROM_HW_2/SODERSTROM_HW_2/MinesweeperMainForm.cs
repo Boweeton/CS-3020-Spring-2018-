@@ -15,10 +15,11 @@ namespace SODERSTROM_HW_2
     {
         #region ClassLevelDeclarations
 
+        int seconds = 60;
         const int ButtonSize = 30;
         const int BufferSize = 0;
         const int TopOffset = 50;
-        MinesweeperGameManager gameManager = new MinesweeperGameManager(MinesweeperDiffaculty.Easy);
+        MinesweeperGameManager gameManager = new MinesweeperGameManager(MinesweeperDiffaculty.Hard);
         Button[,] gameButtons;
 
         #endregion
@@ -34,8 +35,27 @@ namespace SODERSTROM_HW_2
 
         #region Events
         
-        private void OnMinesweeperMainFormLoad (object sender, EventArgs e)
+
+        void OnMinesweeperMainFormLoad (object sender, EventArgs e)
         {
+            gameTimer.Interval = 1000;
+            gameTimer.Start();
+        }
+
+        void OnTimerTick(object sender, EventArgs e)
+        {
+            seconds--;
+            timerTextBox.Text = $"Time Left: {seconds}";
+
+            if (seconds <= 0)
+            {
+                Close();
+            }
+        }
+
+        void OnCloseGameButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
 
         #endregion
@@ -70,6 +90,7 @@ namespace SODERSTROM_HW_2
 
         void ClearButtons (MinesweeperGameManager GM)
         {
+            // Itterate through each button
             for (int i = 0; i < GM.CurrentGridSize; i++)
             {
                 for (int j = 0; j < GM.CurrentGridSize; j++)
@@ -80,41 +101,5 @@ namespace SODERSTROM_HW_2
         }
 
         #endregion
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            gameManager.Diffaculty = MinesweeperDiffaculty.Easy;
-            ClearButtons(gameManager);
-            gameManager.CurrentGridSize = 10;
-            CreateButtons(gameManager);
-            AlterFormSize(gameManager);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            gameManager.Diffaculty = MinesweeperDiffaculty.Medium;
-            ClearButtons(gameManager);
-            gameManager.CurrentGridSize = 15;
-            CreateButtons(gameManager);
-            AlterFormSize(gameManager);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            gameManager.Diffaculty = MinesweeperDiffaculty.Hard;
-            ClearButtons(gameManager);
-            gameManager.CurrentGridSize = 20;
-            CreateButtons(gameManager);
-            AlterFormSize(gameManager);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            gameManager.Diffaculty = MinesweeperDiffaculty.Insain;
-            ClearButtons(gameManager);
-            gameManager.CurrentGridSize = 25;
-            CreateButtons(gameManager);
-            AlterFormSize(gameManager);
-        }
     }
 }
