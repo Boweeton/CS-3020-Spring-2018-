@@ -24,22 +24,24 @@ namespace MinesweeperGameClasses
         const double HardMineFrequency = 0.65;
         const double InsainMineFrequency = 0.85;
 
-        GridCell[,] cells = new GridCell[EasyGridSize, EasyGridSize];
-
         #endregion
 
         #region Constructors
 
         public MinesweeperGameManager (MinesweeperDiffaculty newDiffaculty)
         {
-            diffaculty = newDiffaculty;
+            Diffaculty = newDiffaculty;
         }
 
         #endregion
 
         #region Properties
 
-        public MinesweeperDiffaculty diffaculty { get; set; }
+        public MinesweeperDiffaculty Diffaculty { get; set; }
+
+        public GridCell[,] Cells { get; set; } = new GridCell[EasyGridSize, EasyGridSize];
+
+        public int CurrentGridSize { get; set; }
 
         #endregion
 
@@ -53,46 +55,45 @@ namespace MinesweeperGameClasses
         public void InitializeBoard()
         {
             // Set the board size and mine frequency
-            int localGridSize;
             double localFrequency;
-            switch (diffaculty)
+            switch (Diffaculty)
             {
                 case MinesweeperDiffaculty.Easy:
-                    localGridSize = EasyGridSize;
+                    CurrentGridSize = EasyGridSize;
                     localFrequency = EasyMineFrequency;
                     break;
 
                 case MinesweeperDiffaculty.Medium:
-                    localGridSize = MediumGridSize;
+                    CurrentGridSize = MediumGridSize;
                     localFrequency = MediumMineFrequency;
                     break;
 
                 case MinesweeperDiffaculty.Hard:
-                    localGridSize = HardGridSize;
+                    CurrentGridSize = HardGridSize;
                     localFrequency = HardMineFrequency;
                     break;
 
                 case MinesweeperDiffaculty.Insain:
-                    localGridSize = InsainGridSize;
+                    CurrentGridSize = InsainGridSize;
                     localFrequency = InsainMineFrequency;
                     break;
 
                 default:
-                    localGridSize = 0;
+                    CurrentGridSize = 0;
                     localFrequency = 1;
                     break;
             }
 
             // Create the new board Grid
-            cells = new GridCell[localGridSize, localGridSize];
+            Cells = new GridCell[CurrentGridSize, CurrentGridSize];
 
             // Populate the Grid with initialized GridCell objects
-            for (int i = 0; i < cells.Length; i++)
+            for (int i = 0; i < CurrentGridSize; i++)
             {
-                for (int j = 0; j < cells.Length; j++)
+                for (int j = 0; j < CurrentGridSize; j++)
                 {
                     bool tmpBool = rng.NextDouble() <= localFrequency;
-                    cells[i, j] = new GridCell(tmpBool);
+                    Cells[i, j] = new GridCell(tmpBool);
                 }
             }
         }
