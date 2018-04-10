@@ -29,18 +29,29 @@
         private void InitializeComponent()
         {
             this.combatZonePanel = new System.Windows.Forms.Panel();
+            this.villan2Button = new System.Windows.Forms.Button();
+            this.villan1Button = new System.Windows.Forms.Button();
+            this.villan0Button = new System.Windows.Forms.Button();
+            this.hero2Button = new System.Windows.Forms.Button();
+            this.hero1Button = new System.Windows.Forms.Button();
+            this.hero0Button = new System.Windows.Forms.Button();
             this.combatLogTextBox = new System.Windows.Forms.TextBox();
             this.combatLogTextBoxLabel = new System.Windows.Forms.Label();
             this.action2Button = new System.Windows.Forms.Button();
             this.action1Button = new System.Windows.Forms.Button();
             this.action0Button = new System.Windows.Forms.Button();
             this.actionsLabel = new System.Windows.Forms.Label();
-            this.targetsLabel = new System.Windows.Forms.Label();
-            this.target0Button = new System.Windows.Forms.Button();
-            this.target1Button = new System.Windows.Forms.Button();
-            this.target2Button = new System.Windows.Forms.Button();
             this.gameActionsPanel = new System.Windows.Forms.Panel();
             this.combatLogPanel = new System.Windows.Forms.Panel();
+            this.hero0StatusLabel = new System.Windows.Forms.Label();
+            this.hero1StatusLabel = new System.Windows.Forms.Label();
+            this.hero2StatusLabel = new System.Windows.Forms.Label();
+            this.villan0StatusLabel = new System.Windows.Forms.Label();
+            this.villan1StatusLabel = new System.Windows.Forms.Label();
+            this.villan2StatusLabel = new System.Windows.Forms.Label();
+            this.passTurnButton = new System.Windows.Forms.Button();
+            this.gameMessageLabel = new System.Windows.Forms.Label();
+            this.combatZonePanel.SuspendLayout();
             this.gameActionsPanel.SuspendLayout();
             this.combatLogPanel.SuspendLayout();
             this.SuspendLayout();
@@ -48,10 +59,71 @@
             // combatZonePanel
             // 
             this.combatZonePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.combatZonePanel.Location = new System.Drawing.Point(13, 13);
+            this.combatZonePanel.Controls.Add(this.gameMessageLabel);
+            this.combatZonePanel.Controls.Add(this.villan2StatusLabel);
+            this.combatZonePanel.Controls.Add(this.villan1StatusLabel);
+            this.combatZonePanel.Controls.Add(this.villan0StatusLabel);
+            this.combatZonePanel.Controls.Add(this.hero2StatusLabel);
+            this.combatZonePanel.Controls.Add(this.hero1StatusLabel);
+            this.combatZonePanel.Controls.Add(this.hero0StatusLabel);
+            this.combatZonePanel.Controls.Add(this.villan2Button);
+            this.combatZonePanel.Controls.Add(this.villan1Button);
+            this.combatZonePanel.Controls.Add(this.villan0Button);
+            this.combatZonePanel.Controls.Add(this.hero2Button);
+            this.combatZonePanel.Controls.Add(this.hero1Button);
+            this.combatZonePanel.Controls.Add(this.hero0Button);
+            this.combatZonePanel.Location = new System.Drawing.Point(12, 12);
             this.combatZonePanel.Name = "combatZonePanel";
-            this.combatZonePanel.Size = new System.Drawing.Size(550, 256);
+            this.combatZonePanel.Size = new System.Drawing.Size(595, 322);
             this.combatZonePanel.TabIndex = 0;
+            // 
+            // villan2Button
+            // 
+            this.villan2Button.Location = new System.Drawing.Point(449, 238);
+            this.villan2Button.Name = "villan2Button";
+            this.villan2Button.Size = new System.Drawing.Size(60, 60);
+            this.villan2Button.TabIndex = 5;
+            this.villan2Button.UseVisualStyleBackColor = true;
+            // 
+            // villan1Button
+            // 
+            this.villan1Button.Location = new System.Drawing.Point(449, 124);
+            this.villan1Button.Name = "villan1Button";
+            this.villan1Button.Size = new System.Drawing.Size(60, 60);
+            this.villan1Button.TabIndex = 4;
+            this.villan1Button.UseVisualStyleBackColor = true;
+            // 
+            // villan0Button
+            // 
+            this.villan0Button.Location = new System.Drawing.Point(449, 17);
+            this.villan0Button.Name = "villan0Button";
+            this.villan0Button.Size = new System.Drawing.Size(60, 60);
+            this.villan0Button.TabIndex = 3;
+            this.villan0Button.UseVisualStyleBackColor = true;
+            // 
+            // hero2Button
+            // 
+            this.hero2Button.Location = new System.Drawing.Point(78, 238);
+            this.hero2Button.Name = "hero2Button";
+            this.hero2Button.Size = new System.Drawing.Size(60, 60);
+            this.hero2Button.TabIndex = 2;
+            this.hero2Button.UseVisualStyleBackColor = true;
+            // 
+            // hero1Button
+            // 
+            this.hero1Button.Location = new System.Drawing.Point(78, 124);
+            this.hero1Button.Name = "hero1Button";
+            this.hero1Button.Size = new System.Drawing.Size(60, 60);
+            this.hero1Button.TabIndex = 1;
+            this.hero1Button.UseVisualStyleBackColor = true;
+            // 
+            // hero0Button
+            // 
+            this.hero0Button.Location = new System.Drawing.Point(78, 14);
+            this.hero0Button.Name = "hero0Button";
+            this.hero0Button.Size = new System.Drawing.Size(60, 60);
+            this.hero0Button.TabIndex = 0;
+            this.hero0Button.UseVisualStyleBackColor = true;
             // 
             // combatLogTextBox
             // 
@@ -61,7 +133,7 @@
             this.combatLogTextBox.Name = "combatLogTextBox";
             this.combatLogTextBox.ReadOnly = true;
             this.combatLogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.combatLogTextBox.Size = new System.Drawing.Size(266, 120);
+            this.combatLogTextBox.Size = new System.Drawing.Size(279, 120);
             this.combatLogTextBox.TabIndex = 1;
             this.combatLogTextBox.TextChanged += new System.EventHandler(this.OnCombatLogTextBox_TextChanged);
             // 
@@ -69,7 +141,7 @@
             // 
             this.combatLogTextBoxLabel.AutoSize = true;
             this.combatLogTextBoxLabel.Font = new System.Drawing.Font("BlackChancery", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combatLogTextBoxLabel.Location = new System.Drawing.Point(86, 0);
+            this.combatLogTextBoxLabel.Location = new System.Drawing.Point(120, 0);
             this.combatLogTextBoxLabel.Name = "combatLogTextBoxLabel";
             this.combatLogTextBoxLabel.Size = new System.Drawing.Size(83, 19);
             this.combatLogTextBoxLabel.TabIndex = 2;
@@ -118,77 +190,119 @@
             this.actionsLabel.TabIndex = 6;
             this.actionsLabel.Text = "Take an Action";
             // 
-            // targetsLabel
-            // 
-            this.targetsLabel.AutoSize = true;
-            this.targetsLabel.Font = new System.Drawing.Font("BlackChancery", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.targetsLabel.Location = new System.Drawing.Point(160, 2);
-            this.targetsLabel.Name = "targetsLabel";
-            this.targetsLabel.Size = new System.Drawing.Size(70, 19);
-            this.targetsLabel.TabIndex = 10;
-            this.targetsLabel.Text = "Targeting";
-            // 
-            // target0Button
-            // 
-            this.target0Button.Location = new System.Drawing.Point(128, 22);
-            this.target0Button.Name = "target0Button";
-            this.target0Button.Size = new System.Drawing.Size(140, 36);
-            this.target0Button.TabIndex = 9;
-            this.target0Button.Text = "(auto-filled target)";
-            this.target0Button.UseVisualStyleBackColor = true;
-            // 
-            // target1Button
-            // 
-            this.target1Button.Location = new System.Drawing.Point(128, 64);
-            this.target1Button.Name = "target1Button";
-            this.target1Button.Size = new System.Drawing.Size(140, 36);
-            this.target1Button.TabIndex = 8;
-            this.target1Button.Text = "(auto-filled target)";
-            this.target1Button.UseVisualStyleBackColor = true;
-            // 
-            // target2Button
-            // 
-            this.target2Button.Location = new System.Drawing.Point(129, 106);
-            this.target2Button.Name = "target2Button";
-            this.target2Button.Size = new System.Drawing.Size(140, 36);
-            this.target2Button.TabIndex = 7;
-            this.target2Button.Text = "(auto-filled target)";
-            this.target2Button.UseVisualStyleBackColor = true;
-            // 
             // gameActionsPanel
             // 
-            this.gameActionsPanel.Controls.Add(this.targetsLabel);
-            this.gameActionsPanel.Controls.Add(this.target0Button);
+            this.gameActionsPanel.Controls.Add(this.passTurnButton);
             this.gameActionsPanel.Controls.Add(this.actionsLabel);
             this.gameActionsPanel.Controls.Add(this.action2Button);
             this.gameActionsPanel.Controls.Add(this.action0Button);
-            this.gameActionsPanel.Controls.Add(this.target1Button);
-            this.gameActionsPanel.Controls.Add(this.target2Button);
             this.gameActionsPanel.Controls.Add(this.action1Button);
-            this.gameActionsPanel.Location = new System.Drawing.Point(13, 291);
+            this.gameActionsPanel.Location = new System.Drawing.Point(12, 354);
             this.gameActionsPanel.Name = "gameActionsPanel";
-            this.gameActionsPanel.Size = new System.Drawing.Size(271, 162);
+            this.gameActionsPanel.Size = new System.Drawing.Size(299, 162);
             this.gameActionsPanel.TabIndex = 3;
             // 
             // combatLogPanel
             // 
             this.combatLogPanel.Controls.Add(this.combatLogTextBox);
             this.combatLogPanel.Controls.Add(this.combatLogTextBoxLabel);
-            this.combatLogPanel.Location = new System.Drawing.Point(290, 291);
+            this.combatLogPanel.Location = new System.Drawing.Point(317, 356);
             this.combatLogPanel.Name = "combatLogPanel";
-            this.combatLogPanel.Size = new System.Drawing.Size(273, 162);
+            this.combatLogPanel.Size = new System.Drawing.Size(290, 162);
             this.combatLogPanel.TabIndex = 0;
+            // 
+            // hero0StatusLabel
+            // 
+            this.hero0StatusLabel.AutoSize = true;
+            this.hero0StatusLabel.Font = new System.Drawing.Font("BlackChancery", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hero0StatusLabel.Location = new System.Drawing.Point(13, 17);
+            this.hero0StatusLabel.Name = "hero0StatusLabel";
+            this.hero0StatusLabel.Size = new System.Drawing.Size(58, 57);
+            this.hero0StatusLabel.TabIndex = 6;
+            this.hero0StatusLabel.Text = "Knight\r\nHP: 38\r\nSP: 2";
+            // 
+            // hero1StatusLabel
+            // 
+            this.hero1StatusLabel.AutoSize = true;
+            this.hero1StatusLabel.Font = new System.Drawing.Font("BlackChancery", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hero1StatusLabel.Location = new System.Drawing.Point(13, 124);
+            this.hero1StatusLabel.Name = "hero1StatusLabel";
+            this.hero1StatusLabel.Size = new System.Drawing.Size(59, 57);
+            this.hero1StatusLabel.TabIndex = 7;
+            this.hero1StatusLabel.Text = "Wizard\r\nHP: 20\r\nSP: 4";
+            // 
+            // hero2StatusLabel
+            // 
+            this.hero2StatusLabel.AutoSize = true;
+            this.hero2StatusLabel.Font = new System.Drawing.Font("BlackChancery", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hero2StatusLabel.Location = new System.Drawing.Point(13, 238);
+            this.hero2StatusLabel.Name = "hero2StatusLabel";
+            this.hero2StatusLabel.Size = new System.Drawing.Size(60, 57);
+            this.hero2StatusLabel.TabIndex = 8;
+            this.hero2StatusLabel.Text = "Cleric\r\nHP: 26\r\nSP: 7";
+            // 
+            // villan0StatusLabel
+            // 
+            this.villan0StatusLabel.AutoSize = true;
+            this.villan0StatusLabel.Font = new System.Drawing.Font("BlackChancery", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.villan0StatusLabel.Location = new System.Drawing.Point(515, 36);
+            this.villan0StatusLabel.Name = "villan0StatusLabel";
+            this.villan0StatusLabel.Size = new System.Drawing.Size(59, 19);
+            this.villan0StatusLabel.TabIndex = 9;
+            this.villan0StatusLabel.Text = "Dragon";
+            // 
+            // villan1StatusLabel
+            // 
+            this.villan1StatusLabel.AutoSize = true;
+            this.villan1StatusLabel.Font = new System.Drawing.Font("BlackChancery", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.villan1StatusLabel.Location = new System.Drawing.Point(515, 146);
+            this.villan1StatusLabel.Name = "villan1StatusLabel";
+            this.villan1StatusLabel.Size = new System.Drawing.Size(43, 19);
+            this.villan1StatusLabel.TabIndex = 10;
+            this.villan1StatusLabel.Text = "Ogre";
+            // 
+            // villan2StatusLabel
+            // 
+            this.villan2StatusLabel.AutoSize = true;
+            this.villan2StatusLabel.Font = new System.Drawing.Font("BlackChancery", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.villan2StatusLabel.Location = new System.Drawing.Point(515, 260);
+            this.villan2StatusLabel.Name = "villan2StatusLabel";
+            this.villan2StatusLabel.Size = new System.Drawing.Size(60, 19);
+            this.villan2StatusLabel.TabIndex = 11;
+            this.villan2StatusLabel.Text = "Bandito";
+            // 
+            // passTurnButton
+            // 
+            this.passTurnButton.Font = new System.Drawing.Font("BlackChancery", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passTurnButton.Location = new System.Drawing.Point(162, 64);
+            this.passTurnButton.Name = "passTurnButton";
+            this.passTurnButton.Size = new System.Drawing.Size(110, 36);
+            this.passTurnButton.TabIndex = 7;
+            this.passTurnButton.Text = "Pass Turn";
+            this.passTurnButton.UseVisualStyleBackColor = true;
+            // 
+            // gameMessageLabel
+            // 
+            this.gameMessageLabel.AutoSize = true;
+            this.gameMessageLabel.Font = new System.Drawing.Font("BlackChancery", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameMessageLabel.Location = new System.Drawing.Point(205, 134);
+            this.gameMessageLabel.Name = "gameMessageLabel";
+            this.gameMessageLabel.Size = new System.Drawing.Size(186, 31);
+            this.gameMessageLabel.TabIndex = 12;
+            this.gameMessageLabel.Text = "(Game Message)";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 465);
+            this.ClientSize = new System.Drawing.Size(619, 529);
             this.Controls.Add(this.combatLogPanel);
             this.Controls.Add(this.gameActionsPanel);
             this.Controls.Add(this.combatZonePanel);
             this.Name = "MainForm";
             this.Text = "Final Project [JRPG] Mockup";
+            this.combatZonePanel.ResumeLayout(false);
+            this.combatZonePanel.PerformLayout();
             this.gameActionsPanel.ResumeLayout(false);
             this.gameActionsPanel.PerformLayout();
             this.combatLogPanel.ResumeLayout(false);
@@ -206,12 +320,22 @@
         private System.Windows.Forms.Button action1Button;
         private System.Windows.Forms.Button action0Button;
         private System.Windows.Forms.Label actionsLabel;
-        private System.Windows.Forms.Label targetsLabel;
-        private System.Windows.Forms.Button target0Button;
-        private System.Windows.Forms.Button target1Button;
-        private System.Windows.Forms.Button target2Button;
         private System.Windows.Forms.Panel gameActionsPanel;
         private System.Windows.Forms.Panel combatLogPanel;
+        private System.Windows.Forms.Button villan2Button;
+        private System.Windows.Forms.Button villan1Button;
+        private System.Windows.Forms.Button villan0Button;
+        private System.Windows.Forms.Button hero2Button;
+        private System.Windows.Forms.Button hero1Button;
+        private System.Windows.Forms.Button hero0Button;
+        private System.Windows.Forms.Label hero0StatusLabel;
+        private System.Windows.Forms.Label hero1StatusLabel;
+        private System.Windows.Forms.Label villan2StatusLabel;
+        private System.Windows.Forms.Label villan1StatusLabel;
+        private System.Windows.Forms.Label villan0StatusLabel;
+        private System.Windows.Forms.Label hero2StatusLabel;
+        private System.Windows.Forms.Button passTurnButton;
+        private System.Windows.Forms.Label gameMessageLabel;
     }
 }
 
