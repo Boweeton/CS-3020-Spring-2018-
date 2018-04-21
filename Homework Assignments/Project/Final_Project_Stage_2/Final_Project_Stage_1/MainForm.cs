@@ -108,62 +108,32 @@ namespace Final_Project_Stage_1
 
         void OnHero0CheckChanged(object sender, EventArgs e)
         {
-            if (currentGameState == GameState.HeroChoosingTarget)
-            {
-                heroes[0].HitPoints += CurrentCharacter.Intelligence;
-                AddTextToCombatLog($"Cleric healed {heroes[0].Type} for {CurrentCharacter.Intelligence}");
-                GoToTheNextCharacter();
-            }
+            ProcessHeroClick(0);
         }
 
         void OnHero1CheckChanged(object sender, EventArgs e)
         {
-            if (currentGameState == GameState.HeroChoosingTarget)
-            {
-                heroes[1].HitPoints += CurrentCharacter.Intelligence;
-                AddTextToCombatLog($"Cleric healed {heroes[1].Type} for {CurrentCharacter.Intelligence}");
-                GoToTheNextCharacter();
-            }
+            ProcessHeroClick(1);
         }
 
         void OnHero2CheckChanged(object sender, EventArgs e)
         {
-            if (currentGameState == GameState.HeroChoosingTarget)
-            {
-                heroes[2].HitPoints += CurrentCharacter.Intelligence;
-                AddTextToCombatLog($"Cleric healed {heroes[2].Type} for {CurrentCharacter.Intelligence}");
-                GoToTheNextCharacter();
-            }
+            ProcessHeroClick(2);
         }
 
         void OnEnemy0CheckChanged(object sender, EventArgs e)
         {
-            if (currentGameState == GameState.HeroChoosingTarget)
-            {
-                AddTextToCombatLog("------------------------------");
-                DealDamage(enemies[0]);
-                GoToTheNextCharacter();
-            }
+            ProcessEnemyClick(0);
         }
 
         void OnEnemy1CheckChanged(object sender, EventArgs e)
         {
-            if (currentGameState == GameState.HeroChoosingTarget)
-            {
-                AddTextToCombatLog("------------------------------");
-                DealDamage(enemies[1]);
-                GoToTheNextCharacter();
-            }
+            ProcessEnemyClick(1);
         }
 
         void OnEnemy2CheckChanged(object sender, EventArgs e)
         {
-            if (currentGameState == GameState.HeroChoosingTarget)
-            {
-                AddTextToCombatLog("------------------------------");
-                DealDamage(enemies[2]);
-                GoToTheNextCharacter();
-            }
+            ProcessEnemyClick(2);
         }
 
         #endregion
@@ -349,6 +319,26 @@ namespace Final_Project_Stage_1
         void AddTextToCombatLog(string message)
         {
             combatLogTextBox.Text = $"{message}\r\n{combatLogTextBox.Text}";
+        }
+
+        void ProcessHeroClick(int index)
+        {
+            if (currentGameState == GameState.HeroChoosingTarget)
+            {
+                heroes[index].HitPoints += CurrentCharacter.Intelligence;
+                AddTextToCombatLog($"Cleric healed {heroes[index].Type} for {CurrentCharacter.Intelligence}");
+                GoToTheNextCharacter();
+            }
+        }
+
+        void ProcessEnemyClick(int index)
+        {
+            if (currentGameState == GameState.HeroChoosingTarget)
+            {
+                AddTextToCombatLog("------------------------------");
+                DealDamage(enemies[index]);
+                GoToTheNextCharacter();
+            }
         }
 
         #endregion
