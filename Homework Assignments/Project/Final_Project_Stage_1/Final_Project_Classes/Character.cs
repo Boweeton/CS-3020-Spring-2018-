@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -8,6 +9,7 @@ namespace Final_Project_Classes
     /// <summary>
     /// 
     /// </summary>
+    [DebuggerDisplay("{Type}")]
     public class Character
     {
         #region Fields
@@ -18,33 +20,40 @@ namespace Final_Project_Classes
 
         #region Constructors
 
-        public Character()
+
+        public Character(CharacterType type, int strength, int intelligence, int physicalDefenseValue, int magicalDefenseValue, int hitPoints, int skillPoints, int speed)
         {
+            Type = type;
+            Strength = strength;
+            Intelligence = intelligence;
+            PhysicalDefenseValue = physicalDefenseValue;
+            MagicalDefenseValue = magicalDefenseValue;
+            HitPoints = hitPoints;
+            SkillPoints = skillPoints;
+            Speed = speed;
         }
 
         #endregion
 
         #region Properties
 
-        public string Name { get; set; }
+        public CharacterType Type { get; }
 
-        public int Strength { get; set; }
+        public int Strength { get; }
 
-        public int Intelligence { get; set; }
+        public int Intelligence { get; }
 
-        public int PhysicalAttackPower { get; set; }
+        public int PhysicalDefenseValue { get; }
 
-        public int MagicalAttackPower { get; set; }
-
-        public int PhysicalDefenseValue { get; set; }
-
-        public int MagicalDefenseValue { get; set; }
+        public int MagicalDefenseValue { get; }
 
         public int HitPoints { get; set; }
 
         public int SkillPoints { get; set; }
 
-        public int Speed { get; set; }
+        public int Speed { get; }
+
+        public bool IsPhysical => Strength > Intelligence;
 
         #endregion
 
@@ -52,15 +61,7 @@ namespace Final_Project_Classes
 
         #region Public Methods
 
-        public void Attack(Character ch)
-        {
-
-        }
-
-        public void SpecialAction(Character ch)
-        {
-
-        }
+        
 
         #endregion
 

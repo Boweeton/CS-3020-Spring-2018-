@@ -7,7 +7,7 @@
         Cleric,
         Bandito,
         Ogre,
-        Cat,
-        Dragon
+        Dragon,
+        Cat
     }
 }

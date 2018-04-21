@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameState.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +78,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\heroCleric.png" />
+    <Content Include="Images\heroKnight.png" />
+    <Content Include="Images\heroWizard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Final_Project_Classes\Final_Project_Classes.csproj">
+      <Project>{672d036d-a3f9-4953-9668-c0d97ce98bd6}</Project>
+      <Name>Final_Project_Classes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
