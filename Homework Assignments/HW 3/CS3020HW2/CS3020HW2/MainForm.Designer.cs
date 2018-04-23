@@ -34,17 +34,17 @@
             // 
             // gameTimer
             // 
-            this.gameTimer.Tick += new System.EventHandler(this.OnGameTimerTick);
+            this.gameTimer.Tick += new System.EventHandler(this.OnGameTimer_Tick);
             // 
             // Hw3Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 481);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClientSize = new System.Drawing.Size(739, 707);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Hw3Form";
             this.Text = "Luke\'s Minesweeper";
-            this.Load += new System.EventHandler(this.OnHw3FormLoad);
+            this.Load += new System.EventHandler(this.OnMainForm_Load);
             this.ResumeLayout(false);
 
         }

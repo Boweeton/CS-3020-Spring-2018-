@@ -27,20 +27,21 @@ namespace CS3020HW3Classes
 
         #region Constructors
 
-        public MinesweeperGame(MinesweeperDiffaculty newDiffaculty)
+        public MinesweeperGame(MinesweeperDifficulty newDiffaculty)
         {
             Diffaculty = newDiffaculty;
+            InitializeBoard();
         }
 
         #endregion
 
         #region Properties
 
-        public MinesweeperDiffaculty Diffaculty { get; set; }
-
-        public GridCell[,] Cells { get; set; } = new GridCell[EasyGridSize, EasyGridSize];
+        public MinesweeperDifficulty Diffaculty { get; set; }
 
         public int CurrentGridSize { get; set; }
+
+        public GridCell[,] Cells { get; set; }
 
         #endregion
 
@@ -91,8 +92,8 @@ namespace CS3020HW3Classes
             {
                 for (int j = 0; j < CurrentGridSize; j++)
                 {
-                    bool tmpBool = rng.NextDouble() <= localFrequency;
-                    Cells[i, j] = new GridCell(tmpBool);
+                    bool tmpVal = rng.NextDouble() <= localFrequency;
+                    Cells[i, j] = new GridCell(tmpVal);
                 }
             }
         }

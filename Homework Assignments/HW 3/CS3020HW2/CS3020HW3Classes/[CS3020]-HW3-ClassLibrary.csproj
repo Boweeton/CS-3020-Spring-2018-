@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GridCell.cs" />
-    <Compile Include="MinesweeperDiffaculty.cs" />
+    <Compile Include="MinesweeperDifficulty.cs" />
     <Compile Include="MinesweeperGame.cs" />
     <Compile Include="MinesweeperGridCell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
