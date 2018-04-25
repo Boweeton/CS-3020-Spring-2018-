@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CS3020HW2;
 using MinesweeperGameClasses;
 
 namespace CS3020HW3Classes
@@ -18,10 +15,10 @@ namespace CS3020HW3Classes
         const int HardGridSize = 20;
         const int InsainGridSize = 25;
 
-        const double EasyMineFrequency = 0.25;
-        const double MediumMineFrequency = 0.45;
-        const double HardMineFrequency = 0.65;
-        const double InsainMineFrequency = 0.85;
+        const double EasyMineFrequency = 0.12;
+        const double MediumMineFrequency = 0.18;
+        const double HardMineFrequency = 0.22;
+        const double InsainMineFrequency = 0.30;
 
         #endregion
 
@@ -30,7 +27,7 @@ namespace CS3020HW3Classes
         public MinesweeperGame(MinesweeperDifficulty newDiffaculty)
         {
             Diffaculty = newDiffaculty;
-            InitializeBoard();
+            InitializeBoard(Diffaculty);
         }
 
         #endregion
@@ -52,28 +49,30 @@ namespace CS3020HW3Classes
         /// <summary>
         /// Generates the board according to the current game diffaculty.
         /// </summary>
-        public void InitializeBoard()
+        public void InitializeBoard(MinesweeperDifficulty newDifficulty)
         {
+            Diffaculty = newDifficulty;
+
             // Set the board size and mine frequency
             double localFrequency;
             switch (Diffaculty)
             {
-                case MinesweeperDiffaculty.Easy:
+                case MinesweeperDifficulty.Easy:
                     CurrentGridSize = EasyGridSize;
                     localFrequency = EasyMineFrequency;
                     break;
 
-                case MinesweeperDiffaculty.Medium:
+                case MinesweeperDifficulty.Medium:
                     CurrentGridSize = MediumGridSize;
                     localFrequency = MediumMineFrequency;
                     break;
 
-                case MinesweeperDiffaculty.Hard:
+                case MinesweeperDifficulty.Hard:
                     CurrentGridSize = HardGridSize;
                     localFrequency = HardMineFrequency;
                     break;
 
-                case MinesweeperDiffaculty.Insain:
+                case MinesweeperDifficulty.Insain:
                     CurrentGridSize = InsainGridSize;
                     localFrequency = InsainMineFrequency;
                     break;
@@ -87,13 +86,109 @@ namespace CS3020HW3Classes
             // Create the new board Grid
             Cells = new GridCell[CurrentGridSize, CurrentGridSize];
 
-            // Populate the Grid with initialized GridCell objects
             for (int i = 0; i < CurrentGridSize; i++)
             {
                 for (int j = 0; j < CurrentGridSize; j++)
                 {
-                    bool tmpVal = rng.NextDouble() <= localFrequency;
-                    Cells[i, j] = new GridCell(tmpVal);
+                    Cells[i,j] = new GridCell(i,j);
+                }
+            }
+
+            // Populate with mines and increment
+            for (int i = 0; i < CurrentGridSize; i++)
+            {
+                for (int j = 0; j < CurrentGridSize; j++)
+                {
+                    Cells[i, j].HasMine = rng.NextDouble() <= localFrequency;
+
+
+                    if (i - 1 >= 0 && i - 1 <= CurrentGridSize - 1 && j - 1 >= 0 && j - 1 <= CurrentGridSize - 1)
+                    {
+                        if (Cells[i, j].HasMine)
+                        {
+                            Cells[i - 1, j - 1].AdjMineCount++;
+                        }
+                        Cells[i, j].Neighbors.Add(Cells[i - 1, j - 1]);
+                    }
+
+
+                    if (j - 1 >= 0 && j - 1 <= CurrentGridSize - 1)
+                    {
+                        if (Cells[i, j].HasMine)
+                        {
+                            Cells[i, j - 1].AdjMineCount++;
+                        }
+                        Cells[i, j].Neighbors.Add(Cells[i, j - 1]);
+                    }
+
+
+                    if (i + 1 >= 0 && i + 1 <= CurrentGridSize - 1 && j - 1 >= 0 && j - 1 <= CurrentGridSize - 1)
+                    {
+                        if (Cells[i, j].HasMine)
+                        {
+                            Cells[i + 1, j - 1].AdjMineCount++;
+                        }
+                        Cells[i, j].Neighbors.Add(Cells[i + 1, j - 1]);
+                    }
+
+
+                    if (i - 1 >= 0 && i - 1 <= CurrentGridSize - 1)
+                    {
+                        if (Cells[i, j].HasMine)
+                        {
+                            Cells[i - 1, j].AdjMineCount++;
+                        }
+                        Cells[i, j].Neighbors.Add(Cells[i - 1, j]);
+                    }
+
+
+                    if (i + 1 >= 0 && i + 1 <= CurrentGridSize - 1)
+                    {
+                        if (Cells[i, j].HasMine)
+                        {
+                            Cells[i + 1, j].AdjMineCount++;
+                        }
+                        Cells[i, j].Neighbors.Add(Cells[i + 1, j]);
+                    }
+
+
+                    if (i - 1 >= 0 && i - 1 <= CurrentGridSize - 1 && j + 1 >= 0 && j + 1 <= CurrentGridSize - 1)
+                    {
+                        if (Cells[i, j].HasMine)
+                        {
+                            Cells[i - 1, j + 1].AdjMineCount++;
+                        }
+                        Cells[i, j].Neighbors.Add(Cells[i - 1, j + 1]);
+                    }
+
+
+                    if (j + 1 >= 0 && j + 1 <= CurrentGridSize - 1)
+                    {
+                        if (Cells[i, j].HasMine)
+                        {
+                            Cells[i, j + 1].AdjMineCount++;
+                        }
+                        Cells[i, j].Neighbors.Add(Cells[i, j + 1]);
+                    }
+
+
+                    if (i + 1 >= 0 && i + 1 <= CurrentGridSize - 1 && j + 1 >= 0 && j + 1 <= CurrentGridSize - 1)
+                    {
+                        if (Cells[i, j].HasMine)
+                        {
+                            Cells[i + 1, j + 1].AdjMineCount++;
+                        }
+                        Cells[i,j].Neighbors.Add(Cells[i + 1, j + 1]);
+                    }
+                }
+            }
+
+            // Set the rest of the images
+            for (int i = 0; i < CurrentGridSize; i++)
+            {
+                for (int j = 0; j < CurrentGridSize; j++)
+                {
+                    Cells[i, j].Image = Cells[i, j].HasMine ? GameImage.Mine : (GameImage)Cells[i, j].AdjMineCount;
                 }
             }
         }
