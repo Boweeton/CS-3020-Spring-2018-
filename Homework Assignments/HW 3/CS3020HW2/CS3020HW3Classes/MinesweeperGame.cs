@@ -15,10 +15,10 @@ namespace CS3020HW3Classes
         const int HardGridSize = 20;
         const int InsainGridSize = 25;
 
-        const double EasyMineFrequency = 0.12;
-        const double MediumMineFrequency = 0.18;
-        const double HardMineFrequency = 0.22;
-        const double InsainMineFrequency = 0.30;
+        const double EasyMineFrequency = 0.09;
+        const double MediumMineFrequency = 0.11;
+        const double HardMineFrequency = 0.14;
+        const double InsainMineFrequency = 0.18;
 
         #endregion
 

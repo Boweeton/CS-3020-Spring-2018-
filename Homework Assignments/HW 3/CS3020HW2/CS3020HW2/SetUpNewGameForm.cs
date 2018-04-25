@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CS3020HW3Classes;
 using MinesweeperGameClasses;
@@ -28,6 +21,7 @@ namespace CS3020HW2
 
         void OnSetUpNewGameForm_Load(object sender, EventArgs e)
         {
+            startGameButton.Select();
             difficultyChoiceBox.SelectedIndex = (int)mainForm.msGame.Diffaculty;
             Left = mainForm.Left + ((mainForm.Width - Width) / 2);
             Top = mainForm.Top + ((mainForm.Height - Height) / 2);

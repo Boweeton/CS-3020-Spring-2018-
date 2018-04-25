@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.restartGameButton = new System.Windows.Forms.Button();
             this.aboutButton = new System.Windows.Forms.Button();
-            this.timeerTextBox = new System.Windows.Forms.TextBox();
+            this.timerTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -61,27 +62,30 @@
             this.aboutButton.UseVisualStyleBackColor = true;
             this.aboutButton.Click += new System.EventHandler(this.OnAboutButton_Click);
             // 
-            // timeerTextBox
+            // timerTextBox
             // 
-            this.timeerTextBox.BackColor = System.Drawing.Color.Black;
-            this.timeerTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeerTextBox.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeerTextBox.ForeColor = System.Drawing.Color.DarkRed;
-            this.timeerTextBox.Location = new System.Drawing.Point(117, 16);
-            this.timeerTextBox.Name = "timeerTextBox";
-            this.timeerTextBox.Size = new System.Drawing.Size(55, 25);
-            this.timeerTextBox.TabIndex = 2;
-            this.timeerTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.timerTextBox.BackColor = System.Drawing.Color.Black;
+            this.timerTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.timerTextBox.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timerTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.timerTextBox.Location = new System.Drawing.Point(117, 16);
+            this.timerTextBox.Name = "timerTextBox";
+            this.timerTextBox.ReadOnly = true;
+            this.timerTextBox.Size = new System.Drawing.Size(55, 29);
+            this.timerTextBox.TabIndex = 2;
+            this.timerTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(299, 302);
-            this.Controls.Add(this.timeerTextBox);
+            this.Controls.Add(this.timerTextBox);
             this.Controls.Add(this.aboutButton);
             this.Controls.Add(this.restartGameButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Luke\'s Minesweeper";
@@ -97,7 +101,7 @@
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Button restartGameButton;
         private System.Windows.Forms.Button aboutButton;
-        private System.Windows.Forms.TextBox timeerTextBox;
+        private System.Windows.Forms.TextBox timerTextBox;
     }
 }
 

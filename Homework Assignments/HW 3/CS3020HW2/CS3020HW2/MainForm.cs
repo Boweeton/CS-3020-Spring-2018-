@@ -44,12 +44,6 @@ namespace CS3020HW2
 
         void OnMainForm_Load(object sender, EventArgs e)
         {
-            // Load in lifetimeStats
-            lifetimeStats = File.Exists(statsFilePath) ? Util.DeserializeIn(lifetimeStats, statsFilePath) : new MinesweeperLifetimeStats();
-
-            ResetGame(lifetimeStats.LastDifficulty);
-            SetUpTheForm(msGame);
-
             // Load up the images
             images.Add(GameImage.Non, new Bitmap("Images/non.png"));
             images.Add(GameImage.Adj1, new Bitmap("Images/adj1.png"));
@@ -62,11 +56,17 @@ namespace CS3020HW2
             images.Add(GameImage.Adj8, new Bitmap("Images/adj8.png"));
             images.Add(GameImage.Mine, new Bitmap("Images/mine.png"));
             flagImage = new Bitmap("Images/flag.png");
+
+            // Load in lifetimeStats
+            lifetimeStats = File.Exists(statsFilePath) ? Util.DeserializeIn(lifetimeStats, statsFilePath) : new MinesweeperLifetimeStats();
+
+            ResetGame(lifetimeStats.LastDifficulty);
+            SetUpTheForm(msGame);
         }
 
         void OnGameTimer_Tick(object sender, EventArgs e)
         {
-            timeerTextBox.Text = CreateSecondsString(gameTime);
+            timerTextBox.Text = CreateSecondsString(gameTime);
             gameTime++;
         }
 
@@ -141,7 +141,7 @@ namespace CS3020HW2
             // Define the form size and locations
             Width = (currentBoardWidth * (ButtonSize + BufferSize)) + shim;
             Height = (TopOffset + (currentBoardWidth * (ButtonSize + BufferSize)) + (3 * shim)) - 10;
-            timeerTextBox.Location = new Point(((Width / 2) - timeerTextBox.Width) + shim,13);
+            timerTextBox.Location = new Point(((Width / 2) - timerTextBox.Width) + shim,13);
             aboutButton.Location = new Point(Width - aboutButton.Width - 13 - shim, 13);
 
             // Create the buttons
@@ -156,12 +156,13 @@ namespace CS3020HW2
                         Top = (j * (ButtonSize + BufferSize)) + TopOffset,
                         Height = ButtonSize,
                         Width = ButtonSize,
-                        BackColor = Color.Beige
+                        BackColor = Color.AntiqueWhite
                     };
                     gameButtons[i, j].Click += ProcessClick;
                     gameButtons[i, j].MouseDown += ProcessFlagging;
                     gameButtons[i, j].Show();
                     Controls.Add(gameButtons[i, j]);
+                    PutImageUnderButton(gameButtons[i, j], gameButtons[i, j].Cell.Image);
                 }
             }
 
@@ -192,6 +193,8 @@ namespace CS3020HW2
 
         void ProcessClick(object sender, EventArgs e)
         {
+            restartGameButton.Select();
+
             MinesweeperButton currentButton = ((MinesweeperButton)sender);
 
             if (!currentButton.IsFlagged && !hasLostGame && !hasWonGame)
@@ -199,7 +202,7 @@ namespace CS3020HW2
                 clickedCellCount++;
 
                 currentButton.Cell.HasBeenClicked = true;
-                CoverWithImage((Control)sender, currentButton.Cell.Image);
+                currentButton.Visible = false;
 
                 switch (currentButton.Cell.Image)
                 {
@@ -222,7 +225,7 @@ namespace CS3020HW2
                         {
                             if (button.Cell.HasMine && !button.Cell.HasBeenClicked)
                             {
-                                button.PerformClick();
+                                button.Visible = false;
                                 clickedMineCount++;
                             }
                         }
@@ -247,7 +250,7 @@ namespace CS3020HW2
                     // Store the game
                     gameTimer.Enabled = false;
                     StoreGameWinForm sg = new StoreGameWinForm(this, lifetimeStats, gameTime, msGame.Diffaculty, statsFilePath);
-                    sg.Show();
+                    sg.ShowDialog();
                 }
             }
         }
@@ -264,6 +267,20 @@ namespace CS3020HW2
             Controls.Add(pBox);
             pictureBoxs.Add(pBox);
             Controls.Remove(b);
+        }
+
+        void PutImageUnderButton(Control b, GameImage gi)
+        {
+            PictureBox pBox = new PictureBox { Top = b.Top, Left = b.Left, Width = b.Width, Height = b.Height, Image = images[gi] };
+
+            if (gi == GameImage.Mine)
+            {
+                pBox.BackColor = Color.DarkRed;
+            }
+
+            Controls.Add(pBox);
+            pictureBoxs.Add(pBox);
+            b.BringToFront();
         }
 
         string CreateSecondsString(int time)
@@ -324,7 +341,7 @@ namespace CS3020HW2
         public void OpenNewGameDialog()
         {
             SetUpNewGameForm newGameForm = new SetUpNewGameForm(this);
-            newGameForm.Show();
+            newGameForm.ShowDialog();
         }
 
         #endregion

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoreGameWinForm));
             this.nameFieldBox = new System.Windows.Forms.TextBox();
             this.namFieldLabel = new System.Windows.Forms.Label();
             this.playAgainButton = new System.Windows.Forms.Button();
@@ -79,6 +80,8 @@
             this.Controls.Add(this.playAgainButton);
             this.Controls.Add(this.namFieldLabel);
             this.Controls.Add(this.nameFieldBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StoreGameWinForm";
             this.Text = "You Win!";
             this.Load += new System.EventHandler(this.OnStoreGameWinForm_Load);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetUpNewGameForm));
             this.difficultyChoiceBox = new System.Windows.Forms.ComboBox();
             this.difficultyChoiceLabel = new System.Windows.Forms.Label();
             this.startGameButton = new System.Windows.Forms.Button();
@@ -78,10 +79,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(172, 138);
+            this.ClientSize = new System.Drawing.Size(172, 137);
             this.Controls.Add(this.startGameButton);
             this.Controls.Add(this.difficultyChoiceLabel);
             this.Controls.Add(this.difficultyChoiceBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SetUpNewGameForm";
             this.Load += new System.EventHandler(this.OnSetUpNewGameForm_Load);
             this.ResumeLayout(false);
