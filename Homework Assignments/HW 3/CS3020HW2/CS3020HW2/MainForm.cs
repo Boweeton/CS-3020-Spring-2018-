@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace CS3020HW2
         int clickedMineCount;
         int clickedCellCount;
         int gameTime;
-        int shim = 18;
+        const int Shim = 18;
         int currentBoardWidth;
         const int ButtonSize = 32;
         const int BufferSize = 0;
@@ -45,17 +46,18 @@ namespace CS3020HW2
         void OnMainForm_Load(object sender, EventArgs e)
         {
             // Load up the images
-            images.Add(GameImage.Non, new Bitmap("Images/non.png"));
-            images.Add(GameImage.Adj1, new Bitmap("Images/adj1.png"));
-            images.Add(GameImage.Adj2, new Bitmap("Images/adj2.png"));
-            images.Add(GameImage.Adj3, new Bitmap("Images/adj3.png"));
-            images.Add(GameImage.Adj4, new Bitmap("Images/adj4.png"));
-            images.Add(GameImage.Adj5, new Bitmap("Images/adj5.png"));
-            images.Add(GameImage.Adj6, new Bitmap("Images/adj6.png"));
-            images.Add(GameImage.Adj7, new Bitmap("Images/adj7.png"));
-            images.Add(GameImage.Adj8, new Bitmap("Images/adj8.png"));
-            images.Add(GameImage.Mine, new Bitmap("Images/mine.png"));
-            flagImage = new Bitmap("Images/flag.png");
+            ComponentResourceManager resources = new ComponentResourceManager(GetType());
+            images.Add(GameImage.Non, (Bitmap)resources.GetObject("non"));
+            images.Add(GameImage.Adj1, (Bitmap)resources.GetObject("adj1"));
+            images.Add(GameImage.Adj2, (Bitmap)resources.GetObject("adj2"));
+            images.Add(GameImage.Adj3, (Bitmap)resources.GetObject("adj3"));
+            images.Add(GameImage.Adj4, (Bitmap)resources.GetObject("adj4"));
+            images.Add(GameImage.Adj5, (Bitmap)resources.GetObject("adj5"));
+            images.Add(GameImage.Adj6, (Bitmap)resources.GetObject("adj6"));
+            images.Add(GameImage.Adj7, (Bitmap)resources.GetObject("adj7"));
+            images.Add(GameImage.Adj8, (Bitmap)resources.GetObject("adj8"));
+            images.Add(GameImage.Mine, (Bitmap)resources.GetObject("mine"));
+            flagImage = (Bitmap)resources.GetObject("flag");
 
             // Load in lifetimeStats
             lifetimeStats = File.Exists(statsFilePath) ? Util.DeserializeIn(lifetimeStats, statsFilePath) : new MinesweeperLifetimeStats();
@@ -78,7 +80,8 @@ namespace CS3020HW2
         void OnAboutButton_Click(object sender, EventArgs e)
         {
             gameTimer.Enabled = false;
-            DialogResult dialog = MessageBox.Show(CalculateAbout(), "About");
+            AboutForm af = new AboutForm(this, CalculateAbout(), CalculateHighScores());
+            DialogResult dialog = af.ShowDialog();
 
             if (dialog == DialogResult.OK)
             {
@@ -139,10 +142,10 @@ namespace CS3020HW2
             gameButtons = new MinesweeperButton[mg.CurrentGridSize, mg.CurrentGridSize];
 
             // Define the form size and locations
-            Width = (currentBoardWidth * (ButtonSize + BufferSize)) + shim;
-            Height = (TopOffset + (currentBoardWidth * (ButtonSize + BufferSize)) + (3 * shim)) - 10;
-            timerTextBox.Location = new Point(((Width / 2) - timerTextBox.Width) + shim,13);
-            aboutButton.Location = new Point(Width - aboutButton.Width - 13 - shim, 13);
+            Width = (currentBoardWidth * (ButtonSize + BufferSize)) + Shim;
+            Height = (TopOffset + (currentBoardWidth * (ButtonSize + BufferSize)) + (3 * Shim)) - 10;
+            timerTextBox.Location = new Point(((Width / 2) - timerTextBox.Width) + Shim,13);
+            aboutButton.Location = new Point(Width - aboutButton.Width - 13 - Shim, 13);
 
             // Create the buttons
             for (int i = 0; i < currentBoardWidth; i++)
@@ -292,10 +295,6 @@ namespace CS3020HW2
 
         string CalculateAbout()
         {
-            // Sort lifetimeStats info
-            lifetimeStats.HighScores = lifetimeStats.HighScores.OrderBy(highScoreRecord => highScoreRecord.time).ToList();
-            lifetimeStats.HighScores = lifetimeStats.HighScores.OrderByDescending(highScoreRecord => highScoreRecord.difficulty).ToList();
-
             StringBuilder sb = new StringBuilder();
 
             // Add the controls info
@@ -311,17 +310,29 @@ namespace CS3020HW2
             sb.AppendLine("--- About ---");
             sb.AppendLine("Created by Luke Soderstrom");
             sb.AppendLine("For CS 3200");
-            sb.AppendLine();
-            sb.AppendLine();
+
+            return sb.ToString();
+        }
+
+        string CalculateHighScores()
+        {
+            // Sort lifetimeStats info
+            lifetimeStats.HighScores = lifetimeStats.HighScores.OrderBy(highScoreRecord => highScoreRecord.time).ToList();
+            lifetimeStats.HighScores = lifetimeStats.HighScores.OrderByDescending(highScoreRecord => highScoreRecord.difficulty).ToList();
+
+            // Local Declarations
+            StringBuilder sb = new StringBuilder();
+
+            // Print info
             sb.AppendLine("--- Lifetime Stats ---");
-            sb.AppendLine("Rank\tName\t\tTime\t\tDifficulty");
+            sb.AppendLine("Rank\tName\t\tTime\t\tDifficulty\t");
             for (int i = 0; i < lifetimeStats.HighScores.Count; i++)
             {
                 HighScoreRecord hs = lifetimeStats.HighScores[i];
 
                 if (i <= 10)
                 {
-                    sb.AppendLine($"[{i+1}]\t{hs.name}\t\t{CreateSecondsString(hs.time)}\t\t{hs.difficulty}");
+                    sb.AppendLine($"[{i + 1}]\t{hs.name}\t\t{CreateSecondsString(hs.time)}\t\t{hs.difficulty}\t");
                 }
             }
             sb.AppendLine();
@@ -340,8 +351,14 @@ namespace CS3020HW2
 
         public void OpenNewGameDialog()
         {
+            gameTimer.Enabled = false;
             SetUpNewGameForm newGameForm = new SetUpNewGameForm(this);
-            newGameForm.ShowDialog();
+            DialogResult dialog = newGameForm.ShowDialog();
+
+            if (dialog == DialogResult.Cancel)
+            {
+                gameTimer.Enabled = true;
+            }
         }
 
         #endregion

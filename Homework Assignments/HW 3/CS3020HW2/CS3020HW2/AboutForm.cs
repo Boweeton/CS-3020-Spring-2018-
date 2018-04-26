@@ -12,19 +12,35 @@ namespace CS3020HW2
 {
     public partial class AboutForm : Form
     {
-        public AboutForm()
+        #region FormLevelFields
+
+        readonly MainForm mainForm;
+        readonly string aboutInfo;
+        readonly string highScoreInfo;
+
+        #endregion
+
+        public AboutForm(MainForm mf, string newAboutInfo, string newHighScoreInfo)
         {
             InitializeComponent();
+            mainForm = mf;
+            aboutInfo = newAboutInfo;
+            highScoreInfo = newHighScoreInfo;
         }
 
-        private void AboutForm_Load(object sender, EventArgs e)
+        void OnAboutForm_Load(object sender, EventArgs e)
         {
-
+            aboutTextBox.Text = aboutInfo;
+            highScoresTextBox.Text = highScoreInfo;
+            aboutFormCloseButton.Select();
+            Left = mainForm.Left + ((mainForm.Width - Width) / 2);
+            Top = mainForm.Top + ((mainForm.Height - Height) / 2);
         }
 
-        private void aboutGamePanel_Paint(object sender, PaintEventArgs e)
+        void OnAboutFormCloseButton_Click(object sender, EventArgs e)
         {
-
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

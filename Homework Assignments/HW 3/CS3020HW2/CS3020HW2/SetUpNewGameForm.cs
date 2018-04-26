@@ -32,5 +32,10 @@ namespace CS3020HW2
             mainForm.ResetGame((MinesweeperDifficulty)difficultyChoiceBox.SelectedIndex);
             Close();
         }
+
+        void OnSetUpNewGameFormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
     }
 }

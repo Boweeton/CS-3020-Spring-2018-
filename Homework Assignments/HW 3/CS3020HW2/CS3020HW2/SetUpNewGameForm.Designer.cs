@@ -36,7 +36,7 @@
             // 
             // difficultyChoiceBox
             // 
-            this.difficultyChoiceBox.BackColor = System.Drawing.SystemColors.Control;
+            this.difficultyChoiceBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.difficultyChoiceBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.difficultyChoiceBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.difficultyChoiceBox.ForeColor = System.Drawing.Color.Black;
@@ -79,6 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(172, 137);
             this.Controls.Add(this.startGameButton);
             this.Controls.Add(this.difficultyChoiceLabel);
@@ -86,6 +87,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SetUpNewGameForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnSetUpNewGameFormClosed);
             this.Load += new System.EventHandler(this.OnSetUpNewGameForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

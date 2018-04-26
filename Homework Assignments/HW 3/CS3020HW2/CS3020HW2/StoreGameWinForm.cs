@@ -23,8 +23,8 @@ namespace CS3020HW2
         readonly int time;
         readonly MinesweeperDifficulty difficulty;
         readonly string filePath;
-        MainForm mainForm;
-        const int NameLengthLimit = 10;
+        readonly MainForm mainForm;
+        const int NameLengthLimit = 8;
 
         #endregion
 
