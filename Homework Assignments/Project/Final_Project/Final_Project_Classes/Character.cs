@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 
 namespace Final_Project_Classes
 {
@@ -12,6 +8,8 @@ namespace Final_Project_Classes
     [DebuggerDisplay("{Type}")]
     public class Character
     {
+        int hitPoints;
+
         #region Fields
 
 
@@ -47,7 +45,11 @@ namespace Final_Project_Classes
 
         public int MagicalDefenseValue { get; }
 
-        public int HitPoints { get; set; }
+        public int HitPoints
+        {
+            get => hitPoints;
+            set => hitPoints = value < 0 ? 0 : value;
+        }
 
         public int SkillPoints { get; set; }
 

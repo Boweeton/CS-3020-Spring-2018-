@@ -99,6 +99,10 @@ namespace CS3020HW2
 
         #region HelperMethods
 
+        /// <summary>
+        /// Rebuilds the form and all of its buttons and things.
+        /// </summary>
+        /// <param name="mg">The MinesweeperGame object.</param>
         void SetUpTheForm(MinesweeperGame mg)
         {
             currentBoardWidth = mg.CurrentGridSize;
@@ -175,10 +179,17 @@ namespace CS3020HW2
             gameTime = 0;
         }
 
+        /// <summary>
+        /// Processing a right click on a button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ProcessFlagging(object sender, EventArgs e)
         {
+            // Set the current button
             MinesweeperButton currentButton = (MinesweeperButton)sender;
 
+            // Check for lost game and right click
             if (!hasLostGame && ((MouseEventArgs)e).Button == MouseButtons.Right)
             {
                 if (currentButton.IsFlagged)
@@ -194,6 +205,11 @@ namespace CS3020HW2
             }
         }
 
+        /// <summary>
+        /// Preocess a left click on a button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ProcessClick(object sender, EventArgs e)
         {
             restartGameButton.Select();
@@ -235,6 +251,7 @@ namespace CS3020HW2
 
                         if (clickedMineCount == mineCount - 1)
                         {
+                            // Inform player
                             hasLostGame = true;
                             MessageBox.Show("You Lose!","Game Over");
 
@@ -258,34 +275,33 @@ namespace CS3020HW2
             }
         }
 
-        void CoverWithImage(Control b, GameImage gi)
-        {
-            PictureBox pBox = new PictureBox { Top = b.Top, Left = b.Left, Width = b.Width, Height = b.Height, Image = images[gi] };
-
-            if (gi == GameImage.Mine)
-            {
-                pBox.BackColor = Color.DarkRed;
-            }
-
-            Controls.Add(pBox);
-            pictureBoxs.Add(pBox);
-            Controls.Remove(b);
-        }
-
+        /// <summary>
+        /// Places an image under the button.
+        /// </summary>
+        /// <param name="b">the "Control", button.</param>
+        /// <param name="gi">The image enum.</param>
         void PutImageUnderButton(Control b, GameImage gi)
         {
+            // Build the new picture
             PictureBox pBox = new PictureBox { Top = b.Top, Left = b.Left, Width = b.Width, Height = b.Height, Image = images[gi] };
 
+            // Make bg red if mine
             if (gi == GameImage.Mine)
             {
                 pBox.BackColor = Color.DarkRed;
             }
 
+            // Add it up!
             Controls.Add(pBox);
             pictureBoxs.Add(pBox);
             b.BringToFront();
         }
 
+        /// <summary>
+        /// Creates a string that represents time in seconds in a easy to read "mm:ss" format.
+        /// </summary>
+        /// <param name="time">Time in seconds.</param>
+        /// <returns></returns>
         string CreateSecondsString(int time)
         {
             int minutes = time / 60;
@@ -293,6 +309,10 @@ namespace CS3020HW2
             return $"{minutes}:{seconds:00}";
         }
 
+        /// <summary>
+        /// Produces the about form info.
+        /// </summary>
+        /// <returns></returns>
         string CalculateAbout()
         {
             StringBuilder sb = new StringBuilder();
@@ -314,6 +334,10 @@ namespace CS3020HW2
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Calculate the high score.
+        /// </summary>
+        /// <returns></returns>
         string CalculateHighScores()
         {
             // Sort lifetimeStats info
@@ -341,6 +365,10 @@ namespace CS3020HW2
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Resets the state of the game.
+        /// </summary>
+        /// <param name="difficulty">The given difficulty.</param>
         public void ResetGame(MinesweeperDifficulty difficulty)
         {
             clickedCellCount = 0;
@@ -349,6 +377,9 @@ namespace CS3020HW2
             SetUpTheForm(msGame);
         }
 
+        /// <summary>
+        /// Opens the "new game" form.
+        /// </summary>
         public void OpenNewGameDialog()
         {
             gameTimer.Enabled = false;
